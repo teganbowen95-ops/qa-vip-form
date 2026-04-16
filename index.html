@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quicks Academy — VIP Blueprint</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a0e1a;
+    --navy-mid: #111827;
+    --navy-light: #1a2235;
+    --navy-border: #1e2d45;
+    --gold: #c9a84c;
+    --gold-light: #e8c97a;
+    --gold-dim: rgba(201,168,76,0.15);
+    --gold-border: rgba(201,168,76,0.3);
+    --white: #ffffff;
+    --text-muted: rgba(255,255,255,0.45);
+    --text-body: rgba(255,255,255,0.75);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Subtle texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  /* HERO HEADER */
+  .hero {
+    position: relative;
+    padding: 80px 24px 64px;
+    text-align: center;
+    border-bottom: 1px solid var(--navy-border);
+    background: linear-gradient(180deg, rgba(201,168,76,0.04) 0%, transparent 100%);
+  }
+
+  .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--gold-border);
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .logo-mark span {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--gold);
+    letter-spacing: 1px;
+  }
+
+  .hero-eyebrow {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(38px, 7vw, 64px);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.5px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-divider {
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+    margin: 0 auto 24px;
+  }
+
+  .hero-intro {
+    max-width: 560px;
+    margin: 0 auto;
+    color: var(--text-body);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  .hero-sig {
+    margin-top: 28px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 16px;
+    color: var(--gold-light);
+  }
+
+  /* FORM WRAPPER */
+  .form-wrapper {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 0 24px 120px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* SECTION */
+  .section {
+    padding: 64px 0 0;
+    opacity: 0;
+    transform: translateY(24px);
+    animation: fadeUp 0.5s ease forwards;
+  }
+
+  .section:nth-child(1) { animation-delay: 0.1s; }
+  .section:nth-child(2) { animation-delay: 0.15s; }
+  .section:nth-child(3) { animation-delay: 0.2s; }
+  .section:nth-child(4) { animation-delay: 0.25s; }
+  .section:nth-child(5) { animation-delay: 0.3s; }
+  .section:nth-child(6) { animation-delay: 0.35s; }
+  .section:nth-child(7) { animation-delay: 0.4s; }
+  .section:nth-child(8) { animation-delay: 0.45s; }
+
+  @keyframes fadeUp {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+
+  .section-num {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    background: var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: 3px;
+  }
+
+  .section-meta h2 {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    margin-bottom: 6px;
+  }
+
+  .section-meta p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-border), transparent);
+    margin-bottom: 32px;
+  }
+
+  /* FIELD GROUPS */
+  .field-group {
+    margin-bottom: 24px;
+  }
+
+  .field-group.split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  @media (max-width: 560px) {
+    .field-group.split { grid-template-columns: 1fr; }
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--navy-light);
+    border: 1px solid var(--navy-border);
+    padding: 20px 20px 16px;
+    margin-bottom: 16px;
+    transition: border-color 0.2s;
+  }
+
+  .card:focus-within {
+    border-color: var(--gold-border);
+  }
+
+  .card-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  /* NAME FIELD */
+  .name-field-wrap {
+    background: var(--navy-light);
+    border: 1px solid var(--navy-border);
+    padding: 16px 20px;
+    margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: border-color 0.2s;
+  }
+
+  .name-field-wrap:focus-within {
+    border-color: var(--gold);
+  }
+
+  .name-field-wrap label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  .name-field-wrap input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--white);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 300;
+  }
+
+  .name-field-wrap input::placeholder {
+    color: var(--text-muted);
+    font-style: italic;
+  }
+
+  /* INPUTS */
+  input[type="text"],
+  input[type="email"] {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid var(--navy-border);
+    outline: none;
+    padding: 8px 0;
+    color: var(--white);
+    font-family: 'Barlow', sans-serif;
+    font-size: 15px;
+    font-weight: 300;
+    transition: border-color 0.2s;
+  }
+
+  input[type="text"]:focus,
+  input[type="email"]:focus {
+    border-bottom-color: var(--gold);
+  }
+
+  input::placeholder { color: var(--text-muted); font-style: italic; }
+
+  textarea {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    resize: none;
+    color: var(--text-body);
+    font-family: 'Barlow', sans-serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+    min-height: 80px;
+    transition: color 0.2s;
+  }
+
+  textarea:focus { color: var(--white); }
+  textarea::placeholder { color: var(--text-muted); font-style: italic; }
+
+  /* NUMBERED FIELDS */
+  .numbered-list {
+    background: var(--navy-light);
+    border: 1px solid var(--navy-border);
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+
+  .numbered-list .num-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    padding: 16px 20px 0;
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .num-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border-top: 1px solid var(--navy-border);
+    padding: 0 20px;
+    transition: background 0.15s;
+  }
+
+  .num-row:first-of-type { border-top: none; }
+
+  .num-row:focus-within {
+    background: rgba(201,168,76,0.04);
+  }
+
+  .num-row .num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+    min-width: 32px;
+    padding: 14px 12px 14px 0;
+  }
+
+  .num-row input {
+    flex: 1;
+    border-bottom: none;
+    padding: 14px 0;
+    font-size: 14px;
+  }
+
+  .num-row input:focus {
+    border-bottom: none;
+  }
+
+  /* CONTRACT SECTION */
+  .contract-block {
+    background: var(--navy-light);
+    border: 1px solid var(--gold-border);
+    padding: 32px;
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .contract-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .contract-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: var(--text-body);
+    margin-bottom: 28px;
+  }
+
+  .contract-text strong {
+    color: var(--gold-light);
+    font-weight: 600;
+  }
+
+  .contract-sig {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  @media (max-width: 500px) {
+    .contract-sig { grid-template-columns: 1fr; }
+  }
+
+  .sig-field label {
+    display: block;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+  }
+
+  .sig-field input {
+    border-bottom-color: var(--gold-border);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-style: italic;
+  }
+
+  /* SUBMIT */
+  .submit-wrap {
+    text-align: center;
+    padding-top: 16px;
+  }
+
+  .btn-submit {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 16px 48px;
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-submit:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-submit:active { transform: translateY(0); }
+
+  .btn-submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  .submit-note {
+    margin-top: 14px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  /* SUCCESS STATE */
+  .success-screen {
+    display: none;
+    text-align: center;
+    padding: 80px 24px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  .success-screen.visible { display: block; }
+
+  .success-icon {
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--gold);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    font-size: 24px;
+    color: var(--gold);
+  }
+
+  .success-screen h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+
+  .success-screen p {
+    color: var(--text-body);
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  /* PROGRESS BAR */
+  .progress-bar {
+    position: fixed;
+    top: 0; left: 0;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s;
+    z-index: 100;
+  }
+
+  /* ERROR */
+  .error-msg {
+    display: none;
+    background: rgba(220,50,50,0.1);
+    border: 1px solid rgba(220,50,50,0.3);
+    color: #ff6b6b;
+    padding: 12px 16px;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+
+  .error-msg.visible { display: block; }
+</style>
+</head>
+<body>
+
+<div class="progress-bar" id="progressBar"></div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="logo-mark"><span>QA</span></div>
+  <div class="hero-eyebrow">Quicks Academy</div>
+  <h1>VIP Client<br><em>Blueprint</em></h1>
+  <div class="hero-divider"></div>
+  <p class="hero-intro">
+    This is your personal development document for the next six months.
+    Fill it out with brutal honesty — your own words, your own reflections.
+    There are no wrong answers. This isn't a test; it's a mirror.
+  </p>
+  <div class="hero-sig">— Conrad Quick</div>
+</div>
+
+<!-- FORM -->
+<div class="form-wrapper" id="formWrapper">
+
+  <form id="vipForm" novalidate>
+
+    <!-- CLIENT NAME -->
+    <div class="section">
+      <div class="name-field-wrap">
+        <label for="clientName">YOUR NAME</label>
+        <input type="text" id="clientName" name="clientName" placeholder="Enter your full name..." required>
+      </div>
+    </div>
+
+    <!-- 01 IDENTITY -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">01</div>
+        <div class="section-meta">
+          <h2>Identity Architecture</h2>
+          <p>Who have you been — and who are you becoming? Be honest about the version of yourself you're leaving behind, and bold about the man you're stepping into.</p>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="field-group split">
+        <div class="card">
+          <span class="card-label">The Old Identity — Letting Go Of</span>
+          <textarea name="oldIdentity" rows="5" placeholder="Who have you been that no longer serves you? What patterns, habits, or versions of yourself are you done with?"></textarea>
+        </div>
+        <div class="card">
+          <span class="card-label">The New Identity — Becoming</span>
+          <textarea name="newIdentity" rows="5" placeholder="Who are you stepping into? Describe the man you're building — physically, mentally, in your relationships and work."></textarea>
+        </div>
+      </div>
+
+      <div class="numbered-list">
+        <span class="num-label">Three Traits of the New Man</span>
+        <div class="num-row"><span class="num">01</span><input type="text" name="trait1" placeholder="First core trait of the man you're becoming..."></div>
+        <div class="num-row"><span class="num">02</span><input type="text" name="trait2" placeholder="Second core trait..."></div>
+        <div class="num-row"><span class="num">03</span><input type="text" name="trait3" placeholder="Third core trait..."></div>
+      </div>
+
+      <div class="card">
+        <span class="card-label">Declaration — "I Am..."</span>
+        <textarea name="declaration" rows="3" placeholder='Write your identity statement. Start with "I am..." — own it.'></textarea>
+      </div>
+    </div>
+
+    <!-- 02 CORE WHY -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">02</div>
+        <div class="section-meta">
+          <h2>Core Why & Legacy</h2>
+          <p>Your "why" is what keeps you training when it's raining, eating clean when everyone else is ordering junk, and showing up when no one's watching. Get specific.</p>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="card">
+        <span class="card-label">Who Am I Doing This For?</span>
+        <textarea name="doingThisFor" rows="4" placeholder="Name the people. Your kids, your partner, your mum, yourself — who's counting on the man you're becoming?"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="card-label">What Legacy Am I Building?</span>
+        <textarea name="legacy" rows="4" placeholder="When people talk about you in 20 years, what do you want them to say?"></textarea>
+      </div>
+
+      <div class="field-group split">
+        <div class="card">
+          <span class="card-label">What Happens If I Do Nothing?</span>
+          <textarea name="doNothing" rows="5" placeholder="If you stay exactly as you are for another 6 months, what does your life look like? Be brutally honest."></textarea>
+        </div>
+        <div class="card">
+          <span class="card-label">What Becomes Possible If I Win?</span>
+          <textarea name="ifIWin" rows="5" placeholder="If you show up every single day for 6 months — what's waiting on the other side?"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- 03 6-MONTH VISION -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">03</div>
+        <div class="section-meta">
+          <h2>6-Month Vision Lock</h2>
+          <p>Paint the picture. Where are you in 6 months across every area of your life? Be specific — numbers, milestones, feelings.</p>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="card">
+        <span class="card-label">Physique</span>
+        <textarea name="visionPhysique" rows="4" placeholder="What does your body look like? Weight, body fat %, how you feel in your clothes, how you move..."></textarea>
+      </div>
+      <div class="card">
+        <span class="card-label">Lifestyle & Health</span>
+        <textarea name="visionLifestyle" rows="4" placeholder="Daily routine, nutrition, sleep, vices eliminated, energy levels..."></textarea>
+      </div>
+      <div class="card">
+        <span class="card-label">Business & Work</span>
+        <textarea name="visionBusiness" rows="4" placeholder="Revenue targets, team structure, how the business runs, your role in it..."></textarea>
+      </div>
+      <div class="card">
+        <span class="card-label">Relationships & Family</span>
+        <textarea name="visionRelationships" rows="4" placeholder="How you show up at home, with your partner, with your kids, with your family..."></textarea>
+      </div>
+      <div class="card">
+        <span class="card-label">Mind & Mindset</span>
+        <textarea name="visionMindset" rows="4" placeholder="Mental state, confidence, clarity, how you handle pressure..."></textarea>
+      </div>
+    </div>
+
+    <!-- 04 NON-NEGOTIABLES -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">04</div>
+        <div class="section-meta">
+          <h2>Non-Negotiable Standards</h2>
+          <p>These are the things you do every single day and every single week — no matter what. Rain, stress, travel, bad day. Non-negotiable.</p>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="numbered-list">
+        <span class="num-label">Daily Non-Negotiables</span>
+        <div class="num-row"><span class="num">01</span><input type="text" name="daily1" placeholder="What's the first thing you do every day, no excuses?"></div>
+        <div class="num-row"><span class="num">02</span><input type="text" name="daily2" placeholder="Second daily standard..."></div>
+        <div class="num-row"><span class="num">03</span><input type="text" name="daily3" placeholder="Third daily standard..."></div>
+        <div class="num-row"><span class="num">04</span><input type="text" name="daily4" placeholder="Fourth daily standard..."></div>
+        <div class="num-row"><span class="num">05</span><input type="text" name="daily5" placeholder="Fifth daily standard..."></div>
+      </div>
+
+      <div class="numbered-list">
+        <span class="num-label">Weekly Non-Negotiables</span>
+        <div class="num-row"><span class="num">01</span><input type="text" name="weekly1" placeholder="First weekly commitment..."></div>
+        <div class="num-row"><span class="num">02</span><input type="text" name="weekly2" placeholder="Second weekly commitment..."></div>
+        <div class="num-row"><span class="num">03</span><input type="text" name="weekly3" placeholder="Third weekly commitment..."></div>
+        <div class="num-row"><span class="num">04</span><input type="text" name="weekly4" placeholder="Fourth weekly commitment..."></div>
+      </div>
+    </div>
+
+    <!-- 05 STRENGTHS & SHADOWS -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">05</div>
+        <div class="section-meta">
+          <h2>Strengths & Shadow Work</h2>
+          <p>Every man has strengths that got him here — and shadows that hold him back. Name both. The man who knows his shadows controls them.</p>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="field-group split">
+        <div class="card">
+          <span class="card-label">Competitive Edges & Strengths</span>
+          <textarea name="strengths" rows="5" placeholder="What are you genuinely good at? What gives you your edge? What do people come to you for?"></textarea>
+        </div>
+        <div class="card">
+          <span class="card-label">Vices, Patterns & Shadows</span>
+          <textarea name="shadows" rows="5" placeholder="What are your vices? What patterns keep showing up? What do you do when the pressure gets too much?"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-label">The Trigger — When Do My Shadows Show Up?</span>
+        <textarea name="trigger" rows="4" placeholder="What situation, feeling, or event usually sends you back to your old patterns?"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="card-label">The New Response — What I Do Instead</span>
+        <textarea name="newResponse" rows="4" placeholder="When the trigger hits, what's your new playbook? What do you do instead of falling back?"></textarea>
+      </div>
+    </div>
+
+    <!-- 06 STRESS & RECOVERY -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">06</div>
+        <div class="section-meta">
+          <h2>Stress Release & Recovery</h2>
+          <p>Every high performer needs release valves and recovery rituals. What are yours?</p>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="card">
+        <span class="card-label">Primary Release — Physical Outlet</span>
+        <textarea name="physicalRelease" rows="3" placeholder="What physical activity takes you into the zone and clears your head?"></textarea>
+      </div>
+      <div class="card">
+        <span class="card-label">Secondary Release — Mental / Emotional</span>
+        <textarea name="mentalRelease" rows="3" placeholder="What's your mental reset? Journalling, prayer, meditation, time with family..."></textarea>
+      </div>
+      <div class="card">
+        <span class="card-label">Weekly Recovery Ritual</span>
+        <textarea name="weeklyRecovery" rows="3" placeholder="What does your ideal recovery look like each week? Sauna, walk, family time, phone off..."></textarea>
+      </div>
+    </div>
+
+    <!-- 07 ENVIRONMENT -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">07</div>
+        <div class="section-meta">
+          <h2>Environment & Accountability</h2>
+          <p>You are the average of your environment. Who fuels the mission? Who drains it? What needs to change?</p>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="field-group split">
+        <div class="card">
+          <span class="card-label">People Who Fuel the Mission</span>
+          <textarea name="fuelPeople" rows="5" placeholder="Who lifts you up? Who holds you accountable? Who makes you better?"></textarea>
+        </div>
+        <div class="card">
+          <span class="card-label">People / Places That Drain It</span>
+          <textarea name="drainPeople" rows="5" placeholder="Who or what pulls you backwards? Be honest — comfort zones, enablers, toxic dynamics..."></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <span class="card-label">Environment Adjustments (Next 30 Days)</span>
+        <textarea name="envAdjustments" rows="4" placeholder="What specific changes to your environment will you make in the next 30 days?"></textarea>
+      </div>
+
+      <div class="card">
+        <span class="card-label">How Conrad Should Push Me</span>
+        <textarea name="howToPushMe" rows="4" placeholder="What should Conrad call you out on? Where do you need to be pushed hardest?"></textarea>
+      </div>
+    </div>
+
+    <!-- 08 CONTRACT -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-num">08</div>
+        <div class="section-meta">
+          <h2>The VIP Contract</h2>
+          <p>Lock it in. This is your commitment.</p>
+        </div>
+      </div>
+      <div class="section-divider"></div>
+
+      <div class="contract-block">
+        <p class="contract-text">
+          I commit fully to the Quicks Academy VIP programme.<br><br>
+          For the next six months I will show up as the man I am becoming — not the man I have been.
+          I will train when I don't feel like it. I will eat what builds me, not what numbs me.
+          I will hold my standards when no one is watching. I will face my shadows without flinching.
+          I will trust the process, the coach, and myself.<br><br>
+          <strong>I am no longer negotiating with average. I am VIP.</strong>
+        </p>
+
+        <div class="contract-sig">
+          <div class="sig-field">
+            <label for="signedName">Signed (Type Your Name)</label>
+            <input type="text" id="signedName" name="signedName" placeholder="Your full name...">
+          </div>
+          <div class="sig-field">
+            <label for="signedDate">Date</label>
+            <input type="text" id="signedDate" name="signedDate" placeholder="DD / MM / YYYY" id="signedDate">
+          </div>
+        </div>
+      </div>
+
+      <div id="errorMsg" class="error-msg">Something went wrong submitting your blueprint. Please try again or contact your coach.</div>
+
+      <div class="submit-wrap">
+        <button type="submit" class="btn-submit" id="submitBtn">
+          <span id="submitText">Submit My Blueprint</span>
+        </button>
+        <p class="submit-note">This will send your blueprint directly to Conrad.</p>
+      </div>
+    </div>
+
+  </form>
+
+  <!-- SUCCESS -->
+  <div class="success-screen" id="successScreen">
+    <div class="success-icon">✓</div>
+    <h2>Blueprint <em>Submitted</em></h2>
+    <p>Your blueprint is in. Conrad will review it before your call and go through it with you together. This is the beginning of everything.</p>
+  </div>
+
+</div>
+
+<script>
+  // Auto-fill today's date
+  const today = new Date();
+  const dd = String(today.getDate()).padStart(2, '0');
+  const mm = String(today.getMonth() + 1).padStart(2, '0');
+  const yyyy = today.getFullYear();
+  document.getElementById('signedDate').value = `${dd} / ${mm} / ${yyyy}`;
+
+  // Progress bar
+  window.addEventListener('scroll', () => {
+    const winHeight = document.body.scrollHeight - window.innerHeight;
+    const scrolled = (window.scrollY / winHeight) * 100;
+    document.getElementById('progressBar').style.width = scrolled + '%';
+  });
+
+  // Auto-resize textareas
+  document.querySelectorAll('textarea').forEach(ta => {
+    ta.addEventListener('input', function() {
+      this.style.height = 'auto';
+      this.style.height = this.scrollHeight + 'px';
+    });
+  });
+
+  // SUPABASE CONFIG — replace these with your project values
+  const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+  const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY';
+
+  document.getElementById('vipForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+
+    const submitBtn = document.getElementById('submitBtn');
+    const submitText = document.getElementById('submitText');
+    const errorMsg = document.getElementById('errorMsg');
+
+    // Validate name
+    const clientName = document.getElementById('clientName').value.trim();
+    if (!clientName) {
+      document.getElementById('clientName').focus();
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitText.textContent = 'Submitting...';
+    errorMsg.classList.remove('visible');
+
+    const data = new FormData(this);
+    const payload = {};
+    data.forEach((value, key) => { payload[key] = value; });
+    payload.submitted_at = new Date().toISOString();
+
+    try {
+      const res = await fetch(`${SUPABASE_URL}/rest/v1/vip_blueprints`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'apikey': SUPABASE_ANON_KEY,
+          'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+          'Prefer': 'return=minimal'
+        },
+        body: JSON.stringify(payload)
+      });
+
+      if (!res.ok) throw new Error('Submission failed');
+
+      document.getElementById('formWrapper').querySelector('form').style.display = 'none';
+      document.getElementById('successScreen').classList.add('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    } catch (err) {
+      console.error(err);
+      errorMsg.classList.add('visible');
+      submitBtn.disabled = false;
+      submitText.textContent = 'Submit My Blueprint';
+    }
+  });
+</script>
+</body>
+</html>
